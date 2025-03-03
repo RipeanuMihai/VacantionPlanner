@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Editare Atracție</title>
+  <link rel="stylesheet" type="text/css" href="/css/addAtractie_styles.css" /> <!-- Asigură-te că folosești același fișier CSS -->
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Editare Atracție</h1>
+  <form class="form" th:action="@{/web/atractie/edit/{id}(id=${atractie.id})}" th:object="${atractie}" method="post">
+    <!-- Metoda PUT -->
+    <input type="hidden" name="_method" value="put" />
+    <!-- Nume -->
+    <div class="form-group">
+      <label class="form-label" for="nume">Nume Atracție:</label>
+      <input class="form-input" type="text" id="nume" th:field="*{nume}" placeholder="Introduceți numele atracției" />
+      <div th:if="${#fields.hasErrors('nume')}" th:errors="*{nume}" class="error-message"></div>
+    </div>
+
+    <!-- Descriere -->
+    <div class="form-group">
+      <label class="form-label" for="descriere">Descriere Atracție:</label>
+      <textarea class="form-textarea" id="descriere" th:field="*{descriere}" placeholder="Introduceți descrierea atracției"></textarea>
+      <div th:if="${#fields.hasErrors('descriere')}" th:errors="*{descriere}" class="error-message"></div>
+    </div>
+
+    <!-- Status -->
+    <div class="form-group">
+      <label class="form-label" for="status">Status Atracție:</label>
+      <select class="form-select" id="status" th:field="*{status}">
+        <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}"></option>
+      </select>
+      <div th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error-message"></div>
+    </div>
+
+    <!-- ID-ul orașului asociat -->
+    <input type="hidden" th:field="*{oras.id}" />
+
+    <!-- Butoane -->
+    <div class="form-actions">
+      <button class="btn btn-submit" type="submit">Salvează</button>
+      <a class="btn btn-back" th:href="@{/web/oras/{id}/atractii(id=${atractie.oras.id})}">Înapoi la atracții</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

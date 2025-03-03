@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Editare Oraș</title>
+  <link rel="stylesheet" href="/css/addAtractie_styles.css" />
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Editare Oraș</h1>
+  <form th:action="@{/web/oras/edit/{orasId}(orasId=${oras.id})}" th:object="${oras}" method="post">
+    <!-- Metoda PUT -->
+    <input type="hidden" name="_method" value="put" />
+    <!-- Nume Oraș -->
+    <div class="form-group">
+      <label class="form-label" for="nume">Nume Oraș:</label>
+      <input class="form-input" type="text" th:field="*{nume}" id="nume" placeholder="Introduceți numele orașului" />
+      <div th:if="${#fields.hasErrors('nume')}" class="error-message" th:errors="*{nume}"></div>
+    </div>
+
+    <!-- Descriere Oraș -->
+    <div class="form-group">
+      <label class="form-label" for="descriere">Descriere Oraș:</label>
+      <textarea class="form-textarea" th:field="*{descriere}" id="descriere" placeholder="Introduceți descrierea orașului"></textarea>
+      <div th:if="${#fields.hasErrors('descriere')}" class="error-message" th:errors="*{descriere}"></div>
+    </div>
+
+    <!-- Butoane -->
+    <div class="form-actions">
+      <button class="btn btn-submit" type="submit">Salvează modificările</button>
+      <a class="btn btn-back" th:if="${oras.tara != null}"
+         th:href="@{/web/tara/{taraId}/orase(taraId=${oras.tara.id})}">
+        Înapoi la lista orașelor
+      </a>
+      <span class="error-message" th:if="${oras.tara == null}">Nu există o țară asociată.</span>
+    </div>
+  </form>
+</div>
+</body>
+</html>

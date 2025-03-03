@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harta Lumii</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      color: orange;
+    }
+    #world-map {
+      height: 80vh;
+      width: 90%;
+      margin: 20px auto;
+      border: 2px solid orange;
+      border-radius: 10px;
+    }
+    .btn-back {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: orange;
+      color: black;
+      text-decoration: none;
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+<h1>Harta Lumii</h1>
+<div id="world-map"></div>
+<a href="/web/tara" class="btn-back">Înapoi la Țări</a>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+  const map = L.map('world-map').setView([20, 0], 2);
+
+  fetch('/api/selected-countries')
+          .then(res => res.json())
+          .then(selectedCountries => {
+            fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+                    .then(res => res.json())
+                    .then(geojson => {
+                      L.geoJSON(geojson, {
+                        style: feature => ({
+                          color: selectedCountries.includes(feature.properties.name) ? 'orange' : 'gray',
+                          fillColor: selectedCountries.includes(feature.properties.name) ? 'orange' : 'black',
+                          weight: 1,
+                          fillOpacity: 0.7,
+                        }),
+                        onEachFeature: (feature, layer) => {
+                          layer.bindPopup(`<b>${feature.properties.name}</b>`);
+                        },
+                      }).addTo(map);
+                    });
+          })
+          .catch(err => console.error(err));
+</script>
+</body>
+</html>

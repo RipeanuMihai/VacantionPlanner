@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Adăugare Atractie</title>
+  <link rel="stylesheet" href="/css/addAtractie_styles.css?v=2" />
+</head>
+<body>
+<div class="container">
+  <h2 class="title">Adăugare Atractie</h2>
+  <form th:action="@{/web/oras/{orasId}/atractie/add(orasId=${oras.id})}" th:object="${atractie}" method="post">
+
+    <!-- Nume Atractie -->
+    <div class="form-group">
+      <label for="nume" class="form-label">Nume Atractie:</label>
+      <input type="text" th:field="*{nume}" id="nume" class="form-input" placeholder="Introduceți numele atracției" />
+      <div th:if="${#fields.hasErrors('nume')}" class="error-message">
+        <span th:errors="*{nume}">Nume invalid</span>
+      </div>
+    </div>
+
+    <!-- Descriere Atractie -->
+    <div class="form-group">
+      <label for="descriere" class="form-label">Descriere Atractie:</label>
+      <textarea th:field="*{descriere}" id="descriere" class="form-textarea" placeholder="Introduceți descrierea atracției"></textarea>
+      <div th:if="${#fields.hasErrors('descriere')}" class="error-message">
+        <span th:errors="*{descriere}">Descriere invalidă</span>
+      </div>
+    </div>
+
+    <!-- Status Atractie -->
+    <div class="form-group">
+      <label for="status" class="form-label">Status Atractie:</label>
+      <select th:field="*{status}" id="status" class="form-select">
+        <option th:each="status : ${T(com.travelapp.travel_app.model.Status).values()}"
+                th:value="${status}" th:text="${status.name()}">Status Atractie</option>
+      </select>
+      <div th:if="${#fields.hasErrors('status')}" class="error-message">
+        <span th:errors="*{status}">Status invalid</span>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-submit">Adaugă Atractie</button>
+      <a href="/oras/{orasId}/atractii" th:href="@{/web/oras/{orasId}/atractii(orasId=${oras.id})}" class="btn btn-back">Înapoi la lista atracțiilor</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

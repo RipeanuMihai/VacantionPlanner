@@ -1,0 +1,119 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #000000; /* Fundal negru */
+    color: #ffffff; /* Text alb */
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header Styling */
+h1, h2 {
+    color: #FFA500; /* Portocaliu */
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(255, 165, 0, 0.2); /* Shadow portocaliu */
+    background-color: #1a1a1a; /* Gri închis */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #FFA500; /* Portocaliu */
+    color: #000000; /* Text negru */
+}
+
+table th, table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #333; /* Gri închis */
+}
+
+table th {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #222222; /* Gri închis */
+}
+
+table tr:hover {
+    background-color: #333333; /* Gri mediu */
+    color: #FFA500; /* Text portocaliu */
+}
+
+/* Button Styling */
+button {
+    background-color: #FFA500; /* Portocaliu */
+    color: #000000; /* Text negru */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #e59400; /* Portocaliu închis */
+    color: #ffffff; /* Text alb */
+    transform: scale(1.05); /* Efect de creștere */
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.actions-container {
+    display: flex;
+    justify-content: center; /* Centrare orizontală */
+    align-items: center; /* Centrare verticală (dacă este nevoie) */
+    gap: 10px; /* Distanță între butoane */
+    margin-top: 20px; /* Spațiu deasupra secțiunii */
+}
+
+
+form {
+    display: inline; /* Asigură alinierea în linie pentru butonul din form */
+    margin: 0;
+    padding: 0;
+}
+
+/* Stil pentru imaginile din tabel */
+img {
+    display: block; /* Asigură alinierea imaginii în centru */
+    margin: 0 auto; /* Centrează imaginea pe orizontală */
+    border: 3px solid #ff8c00; /* Chenar portocaliu */
+    border-radius: 10px; /* Colțuri rotunjite */
+    padding: 5px; /* Spațiu între imagine și border */
+    max-width: 100%; /* Asigură dimensiuni responsive */
+    height: auto; /* Păstrează proporțiile */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adaugă o umbră pentru efect vizual */
+    transition: transform 0.3s ease; /* Adaugă o tranziție pentru hover */
+}
+
+/* Efect la hover */
+img:hover {
+    transform: scale(1.05); /* Mărește ușor imaginea */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Umbră mai intensă la hover */
+}
+

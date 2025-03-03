@@ -1,0 +1,202 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Fundal negru */
+    color: #f5f5f5; /* Text deschis */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Titluri */
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #e67e22; /* Portocaliu */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Alerte */
+.alert {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #e74c3c; /* Roșu */
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Listă */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 30px auto;
+    width: 90%;
+}
+
+li {
+    background: #1e1e1e; /* Fundal gri închis */
+    border: 1px solid #e67e22; /* Bordură portocalie */
+    margin-bottom: 20px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Informații despre oraș */
+li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+li div p {
+    margin: 0;
+}
+
+/* Nume Oraș */
+li .oras-nume {
+    font-size: 2rem; /* Numele mai mare */
+    font-weight: bold; /* Bold */
+    color: #e67e22; /* Portocaliu */
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+li .oras-nume:hover {
+    color: #ff9800; /* Portocaliu mai deschis */
+    text-decoration: underline;
+}
+
+/* Descriere Oraș */
+li .oras-descriere {
+    font-size: 1rem; /* Dimensiunea textului pentru descriere */
+    color: #d3d3d3; /* Gri deschis */
+    margin-top: 0; /* Spațiu minim deasupra */
+    line-height: 1.5; /* Spațiu între linii */
+}
+
+/* Progres */
+progress {
+    width: 100%;
+    height: 12px;
+    border-radius: 10px;
+    background-color: #2c2c2c;
+    margin-top: 10px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #2c2c2c; /* Fundal progres */
+}
+
+progress::-webkit-progress-value {
+    background-color: #e67e22; /* Culoare progres */
+}
+
+progress::-moz-progress-bar {
+    background-color: #e67e22;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px; /* Dimensiuni buton */
+    font-size: 1rem; /* Dimensiunea textului */
+    font-weight: bold;
+    color: #ffffff; /* Text alb */
+    background-color: #e67e22; /* Portocaliu */
+    border: none;
+    border-radius: 8px; /* Colțuri rotunjite */
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Umbră */
+    margin-bottom: 100px;
+}
+
+/* Efect hover pentru butoane */
+.btn:hover {
+    background-color: #d35400; /* Portocaliu mai închis */
+    transform: scale(1.05); /* Efect de mărire */
+}
+
+/* Stil consistent pentru btn-add și btn-back */
+.btn-add, .btn-back {
+    background-color: #e67e22; /* Portocaliu */
+    color: #ffffff; /* Text alb */
+}
+
+/* Efect hover pentru btn-add și btn-back */
+.btn-add:hover, .btn-back:hover {
+    background-color: #d35400; /* Portocaliu mai închis */
+}
+
+/* Containere de acțiuni */
+.actions {
+    display: flex;
+    justify-content: center; /* Centrează butoanele */
+    gap: 15px; /* Spațiu între butoane */
+    margin-top: 20px;
+    flex-wrap: wrap; /* Permite trecerea pe rânduri, dacă e necesar */
+}
+
+.actions a {
+    text-decoration: none;
+}
+
+.actions .btn {
+    padding: 10px 200px; /* Dimensiune mai compactă */
+    font-size: 1rem; /* Dimensiunea textului */
+    border-radius: 5px; /* Colțuri rotunjite */
+    background-color: #e67e22; /* Portocaliu */
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: auto; /* Dimensiune automată */
+}
+
+.actions .btn:hover {
+    background-color: #d35400; /* Portocaliu mai închis */
+    transform: scale(1.05); /* Efect la hover */
+}
+
+.section-title {
+    font-size: 1.4rem; /* Dimensiune titlu */
+    font-weight: bold; /* Bold pentru titlu */
+    color: #ff6600; /* Portocaliu */
+    margin-bottom: 5px; /* Spațiu între titlu și descriere */
+}
+
+.btn-actions {
+    text-decoration: none;
+    color: #e67e22; /* Portocaliu */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.btn-actions:hover {
+    color: #ff9800;
+    text-decoration: underline;
+}
+
+form .btn-actions {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+}

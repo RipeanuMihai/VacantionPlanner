@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Orașe din Țară</title>
+    <link rel="stylesheet" href="/css/orase_styles.css?v=4" />
+</head>
+<body>
+<h2>Orașele din Țara: <span th:text="${tara.nume}"></span></h2>
+
+<div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+<!-- Lista orașelor -->
+<ul>
+  <li th:each="oras : ${orase}">
+    <div>
+      <!-- Detalii oraș -->
+      <span class="oras-nume" th:text="${oras.nume}"></span>
+      <span class="oras-descriere" th:text="${oras.descriere}"></span>
+    </div>
+
+    <!-- Bara de progres pentru fiecare oraș -->
+    <div>
+      <p><strong>Progresul atracțiilor finalizate:</strong></p>
+      <progress th:value="${oras.progres}" th:max="100"></progress>
+      <p th:text="'Progres: ' + ${oras.progres} + '%'"></p>
+    </div>
+
+    <!-- Butoane de acțiune -->
+    <div>
+      <!-- Vizualizează atracțiile orașului -->
+      <a th:href="@{/web/oras/{orasId}/atractii(orasId=${oras.id})}" class="btn-actions">Vezi atracțiile</a>
+
+      <!-- Editează orașul -->
+      <a th:href="@{/web/oras/edit/{id}(id=${oras.id})}" class="btn-actions">Editează</a>
+
+      <!-- Șterge orașul -->
+      <form th:action="@{/web/oras/delete/{id}(id=${oras.id})}" method="post" onsubmit="return confirm('Ești sigur că vrei să ștergi acest oraș?');">
+        <input type="hidden" name="_method" value="delete"/>
+        <button type="submit" class="btn-actions">Șterge</button>
+      </form>
+    </div>
+  </li>
+</ul>
+
+<!-- Buton pentru a adăuga un oraș nou -->
+<div class="actions">
+  <a th:href="@{/web/tara/{taraId}/oras/add(taraId=${tara.id})}" class="btn btn-add">Adaugă Oraș</a>
+  <!-- Buton pentru a reveni la pagina de țară -->
+  <a th:href="@{/web/tara}" class="btn btn-back">Înapoi la Țari</a>
+</div>
+
+</body>
+</html>

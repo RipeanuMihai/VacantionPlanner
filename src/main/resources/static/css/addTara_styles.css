@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Fundal negru */
+    color: #ffffff; /* Text alb */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Gri închis */
+    border: 1px solid #333333;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffa500; /* Portocaliu */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 2rem; /* Diminuează dimensiunea fontului */
+    color: #ffa500; /* Portocaliu */
+    margin: 8px auto 8px 8px;
+}
+
+input[type="text"] {
+    width: 580px;
+    padding: 10px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color: #1e1e1e; /* Gri închis */
+    color: #ffffff; /* Text alb */
+}
+
+input[type="text"]::placeholder {
+    color: #aaaaaa; /* Gri deschis */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffa500;
+    color: #000000; /* Text negru */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #555555; /* Gri deschis */
+    color: #aaaaaa; /* Gri pal */
+    cursor: not-allowed;
+}
+
+.back-button {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #ffa500; /* Portocaliu */
+    font-weight: bold;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: #1e1e1e; /* Gri închis */
+    border: 1px solid #333333;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    width: auto; /* Ajustează lățimea listei */
+    min-width: 600px; /* Face lista să fie cât de largă este conținutul */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown.hidden {
+    display: none;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333333;
+    color: #ffffff; /* Text alb */
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.highlighted {
+    background-color: #ffa500; /* Portocaliu */
+    color: #000000; /* Text negru */
+}
+
+.errorMessage {
+    background-color: #ff4d4d; /* Fundal roșu pentru a semnaliza eroarea */
+    color: white; /* Text alb pentru contrast */
+    font-weight: bold; /* Text îngroșat */
+    border: 1px solid #d10000; /* Margine subtilă de culoare roșu-închis */
+    border-radius: 5px; /* Colțuri rotunjite */
+    text-align: center; /* Text centrat */
+    width: 100%; /* Lățimea mesajului */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Umbra pentru un efect modern */
+    margin: auto;
+}

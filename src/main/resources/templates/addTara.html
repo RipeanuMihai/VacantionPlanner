@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Adaugă Țară</title>
+  <link rel="stylesheet" href="/css/addTara_styles.css?v=2">
+</head>
+<body>
+<div class="container">
+  <h2>Adaugă o nouă țară</h2>
+  <div class="errorMessage" th:if="${error}">
+    <p th:text="${error}"></p>
+  </div>
+  <form th:action="@{/web/tara/add}" method="post" id="addTaraForm">
+    <label for="countryName">Numele țării:</label>
+    <input
+            type="text"
+            id="countryName"
+            name="countryName"
+            placeholder="Căutați o țară..."
+            autocomplete="off"
+            required>
+    <div id="countryList" class="dropdown hidden"></div>
+    <button type="submit" id="addTaraButton" disabled>Adaugă Țara</button>
+  </form>
+  <a class="back-button" href="/web/tara">Înapoi la lista țărilor</a>
+</div>
+
+<script>
+  // JavaScript pentru sugestii
+  const countryInput = document.getElementById('countryName');
+  const countryList = document.getElementById('countryList');
+  const addTaraButton = document.getElementById('addTaraButton');
+  let suggestions = [];
+  let currentIndex = -1;
+  let validCountry = false;
+
+  countryInput.addEventListener('input', function () {
+    const query = countryInput.value.trim();
+    if (query.length > 2) {
+      fetch(`/api/autocomplete/tari?query=${query}`)
+              .then(response => response.json())
+              .then(data => {
+                suggestions = data;
+                renderSuggestions(data);
+                currentIndex = -1;
+                validCountry = false;
+                addTaraButton.disabled = true;
+              })
+              .catch(error => console.error("Eroare la apelul API:", error));
+    } else {
+      countryList.classList.add('hidden');
+      suggestions = [];
+      renderSuggestions([]);
+      addTaraButton.disabled = true;
+    }
+  });
+
+  function renderSuggestions(data) {
+    countryList.innerHTML = '';
+    if (data.length === 0) {
+      countryList.classList.add('hidden');
+      return;
+    }
+    countryList.classList.remove('hidden');
+    data.forEach((country, index) => {
+      const div = document.createElement('div');
+      div.textContent = country.name;
+      div.className = 'suggestion-item';
+      div.dataset.index = index;
+      div.addEventListener('click', function () {
+        selectSuggestion(index);
+      });
+      countryList.appendChild(div);
+    });
+  }
+
+  function selectSuggestion(index) {
+    const selectedCountry = suggestions[index];
+    if (selectedCountry) {
+      countryInput.value = selectedCountry.name;
+      countryList.classList.add('hidden');
+      validCountry = true;
+      addTaraButton.disabled = false;
+    }
+  }
+
+  countryInput.addEventListener('keydown', function (e) {
+    const items = document.querySelectorAll('.suggestion-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (currentIndex < items.length - 1) {
+        currentIndex++;
+        highlightSuggestion(items);
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (currentIndex > 0) {
+        currentIndex--;
+        highlightSuggestion(items);
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (currentIndex >= 0 && currentIndex < items.length) {
+        selectSuggestion(currentIndex);
+      } else if (validCountry) {
+        addTaraButton.click();
+      }
+    }
+  });
+
+  function highlightSuggestion(items) {
+    items.forEach((item, index) => {
+      if (index === currentIndex) {
+        item.classList.add('highlighted');
+      } else {
+        item.classList.remove('highlighted');
+      }
+    });
+  }
+</script>
+</body>
+</html>

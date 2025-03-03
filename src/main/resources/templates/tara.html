@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>TravelApp_Tari</title>
+    <link rel="stylesheet" href="/css/tara_styles.css?v=2" />
+</head>
+<body>
+<h1>Lista dvs. de țări</h1>
+
+<!-- Buton pentru adăugarea unei țări -->
+<a href="/web/tara/add">
+  <button>Adaugă Țară</button>
+</a>
+
+<a href="/web/harta">
+  <button>Vezi Harta</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nume Țară</th>
+    <th>Steag</th>
+    <th>Acțiuni</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="tara : ${tari}">
+    <td th:text="${tara.nume}">Nume Tara</td>
+    <td><img th:src="${tara.steag}" alt="Steag" width="50" height="30"></td>
+    <td>
+      <!-- Buton pentru modificarea unei țări -->
+      <a th:href="'/web/tara/edit/' + ${tara.id}">
+        <button>Modifică</button>
+      </a>
+
+      <!-- Buton pentru ștergerea unei țări -->
+      <form th:action="'/web/tara/delete/' + ${tara.id}" method="post" onsubmit="return confirm('Sigur doriți să ștergeți această țară?');">
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit">Șterge</button>
+      </form>
+
+      <!-- Buton pentru vizualizarea orașelor unei țări -->
+      <a th:href="'/web/tara/' + ${tara.id} + '/orase'">
+        <button>Vezi Orașele</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>STATISTICI</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Continent</th>
+    <th>Număr de Țări</th>
+    <th>Procentaj</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>World</td>
+    <td>
+      <span th:text="${tari.size()}">0</span> / 195
+    </td>
+    <td>
+      <span th:text="${(tari.size() * 100) / 195} + '%'">0%</span>
+    </td>
+  </tr>
+  <tr th:each="entry : ${tariPeContinente}">
+    <td th:text="${entry.key}">Continent</td>
+    <td>
+      <span th:text="${tariPeContinente[entry.key] != null ? tariPeContinente[entry.key] : 0}">0</span>
+      /
+      <span th:text="${totalTariPeContinente[entry.key]}">0</span>
+    </td>
+    <td th:text="${procenteContinente[entry.key]}">0%</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

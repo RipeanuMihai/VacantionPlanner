@@ -1,0 +1,115 @@
+body {
+    background-color: #111; /* Fundal negru */
+    color: #fff; /* Text alb */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #222;
+    border: 2px solid #ff9800; /* Portocaliu */
+    border-radius: 12px;
+    padding: 30px;
+    width: 450px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    color: #ff9800; /* Portocaliu */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-label {
+    font-size: 16px;
+    color: #ff9800;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ff9800;
+    border-radius: 8px;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #888;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit {
+    background-color: #ff9800; /* Portocaliu */
+    color: #111; /* Negru */
+}
+
+.btn-submit:hover {
+    background-color: #e68900;
+}
+
+.btn-back {
+    background-color: #444; /* Gri */
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #555;
+}
+
+/* CSS pentru mesaj de eroare */
+.error-message {
+    background-color: #ff4d4d; /* Fundal roșu pentru a semnaliza eroarea */
+    color: white; /* Text alb pentru contrast */
+    font-weight: bold; /* Text îngroșat */
+    border: 1px solid #d10000; /* Margine subtilă de culoare roșu-închis */
+    border-radius: 5px; /* Colțuri rotunjite */
+    padding: 10px 20px; /* Spațiere internă */
+    text-align: center; /* Text centrat */
+    width: 80%; /* Lățimea mesajului */
+    max-width: 500px; /* Lățime maximă */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Umbra pentru un efect modern */
+    margin: 10px auto 10px 20px;
+}

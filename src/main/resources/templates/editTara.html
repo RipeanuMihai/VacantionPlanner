@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifică Țară</title>
+  <link rel="stylesheet" href="/css/addTara_styles.css?v=2">
+</head>
+<body>
+<div class="container">
+  <h2>Modifică Țară</h2>
+
+  <!-- Mesaj de eroare -->
+  <div class="errorMessage" th:if="${error}">
+    <p th:text="${error}"></p>
+  </div>
+
+  <!-- Formular pentru modificare -->
+  <form th:action="@{/web/tara/edit/{id}(id=${tara.id})}" method="post" id="editTaraForm">
+    <!-- Indicarea metodei PUT -->
+    <input type="hidden" name="_method" value="put">
+
+    <!-- Câmp pentru numele țării -->
+    <label for="countryName">Numele țării:</label>
+    <input
+            type="text"
+            id="countryName"
+            name="countryName"
+            th:value="${tara.nume}"
+            placeholder="Modificați numele țării..."
+            autocomplete="off"
+            required>
+
+    <!-- Div pentru sugestii autocomplete -->
+    <div id="countryList" class="dropdown hidden"></div>
+
+    <!-- Buton pentru salvare -->
+    <button type="submit" id="editTaraButton" disabled>Salvează Modificările</button>
+  </form>
+
+  <!-- Link pentru revenire -->
+  <a class="back-button" href="/web/tara">Înapoi la lista țărilor</a>
+</div>
+
+<!-- Script pentru sugestii autocomplete -->
+<script>
+  const countryInput = document.getElementById('countryName');
+  const countryList = document.getElementById('countryList');
+  const editTaraButton = document.getElementById('editTaraButton');
+  let suggestions = [];
+  let currentIndex = -1;
+  let validCountry = false;
+
+  // Eveniment pentru introducerea textului
+  countryInput.addEventListener('input', function () {
+    const query = countryInput.value.trim();
+    if (query.length > 2) {
+      fetch(`/api/autocomplete/tari?query=${query}`)
+              .then(response => response.json())
+              .then(data => {
+                suggestions = data;
+                renderSuggestions(data);
+                currentIndex = -1;
+                validCountry = false;
+                editTaraButton.disabled = true;
+              })
+              .catch(error => console.error("Eroare la apelul API:", error));
+    } else {
+      countryList.classList.add('hidden');
+      suggestions = [];
+      renderSuggestions([]);
+      editTaraButton.disabled = true;
+    }
+  });
+
+  // Funcție pentru afișarea sugestiilor
+  function renderSuggestions(data) {
+    countryList.innerHTML = '';
+    if (data.length === 0) {
+      countryList.classList.add('hidden');
+      return;
+    }
+    countryList.classList.remove('hidden');
+    data.forEach((country, index) => {
+      const div = document.createElement('div');
+      div.textContent = country.name;
+      div.className = 'suggestion-item';
+      div.dataset.index = index;
+      div.addEventListener('click', function () {
+        selectSuggestion(index);
+      });
+      countryList.appendChild(div);
+    });
+  }
+
+  // Funcție pentru selectarea unei sugestii
+  function selectSuggestion(index) {
+    const selectedCountry = suggestions[index];
+    if (selectedCountry) {
+      countryInput.value = selectedCountry.name;
+      countryList.classList.add('hidden');
+      validCountry = true;
+      editTaraButton.disabled = false;
+    }
+  }
+
+  // Evenimente pentru navigarea între sugestii
+  countryInput.addEventListener('keydown', function (e) {
+    const items = document.querySelectorAll('.suggestion-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (currentIndex < items.length - 1) {
+        currentIndex++;
+        highlightSuggestion(items);
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (currentIndex > 0) {
+        currentIndex--;
+        highlightSuggestion(items);
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (currentIndex >= 0 && currentIndex < items.length) {
+        selectSuggestion(currentIndex);
+      } else if (validCountry) {
+        editTaraButton.click();
+      }
+    }
+  });
+
+  // Funcție pentru evidențierea sugestiilor
+  function highlightSuggestion(items) {
+    items.forEach((item, index) => {
+      if (index === currentIndex) {
+        item.classList.add('highlighted');
+      } else {
+        item.classList.remove('highlighted');
+      }
+    });
+  }
+</script>
+</body>
+</html>

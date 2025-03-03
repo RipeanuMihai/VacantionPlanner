@@ -1,0 +1,224 @@
+/* atractii_styles.css */
+
+/* General styles */
+body {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for better contrast */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #121212; /* Dark gray background for the container */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 2em;
+    color: #ff8c00; /* Orange for the title */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Table */
+.atractii-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-header {
+    background-color: #ff8c00; /* Orange header background */
+    color: #000; /* Black text for header contrast */
+}
+
+.table-header th {
+    padding: 10px;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.table-row:nth-child(even) {
+    background-color: #1c1c1c; /* Slightly lighter black for alternating rows */
+}
+
+.table-row:nth-child(odd) {
+    background-color: #181818; /* Slightly darker for alternating rows */
+}
+
+.table-data {
+    padding: 10px;
+    font-size: 1em;
+    text-align: left;
+}
+
+.table-data.descriere {
+    max-width: 20px; /* Setează o lățime maximă mai rezonabilă */
+    word-wrap: break-word; /* Permite spargerea cuvintelor lungi */
+    overflow-wrap: break-word; /* Suport suplimentar pentru spargerea cuvintelor */
+    white-space: normal; /* Permite trecerea pe mai multe linii */
+    text-align: center; /* Text aliniat la stânga */
+    padding: 5px; /* Adaugă spațiu interior */
+}
+
+.table-data.nume{
+    max-width: 20px; /* Setează o lățime maximă mai rezonabilă */
+    word-wrap: break-word; /* Permite spargerea cuvintelor lungi */
+    overflow-wrap: break-word; /* Suport suplimentar pentru spargerea cuvintelor */
+    white-space: normal; /* Permite trecerea pe mai multe linii */
+    text-align: center; /* Text aliniat la stânga */
+    padding: 5px; /* Adaugă spațiu interior */
+}
+/* Buttons in the table */
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: #ff8c00; /* Orange for edit */
+    color: #000; /* Black text */
+}
+
+.btn-delete {
+    background-color: #ff4500; /* Red-orange for delete */
+    color: #fff; /* White text */
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* Actions section */
+.actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.actions .btn {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+.btn-add {
+    background-color: #ff8c00; /* Orange for add */
+    color: #000; /* Black text */
+}
+
+.btn-back {
+    background-color: #ff8c00; /* Orange for back */
+    color: #000; /* Black text */
+}
+
+.btn-add:hover, .btn-back:hover {
+    opacity: 0.8;
+}
+
+/* Links inside buttons */
+a.btn {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Base styles for the table */
+.table-data {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Specific styles for each status */
+
+/* Finalizată */
+.status-finalizata {
+    display: inline-block; /* Permite dimensiuni flexibile pentru casetă */
+    padding: 5%; /* Spațiu în interior */
+    border-radius: 12px; /* Colțuri rotunjite */
+    font-weight: bold; /* Text evidențiat */
+    font-size: 0.9em; /* Dimensiune rezonabilă a textului */
+    color: white; /* Text alb */
+    text-align: center; /* Text centrat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Umbră */
+    max-width: 200px; /* Lățime maximă */
+    background-color: #28a745;
+    margin: 2% auto 2% 30%;
+}
+
+/* În desfășurare */
+.status-in_desfasurare {
+    display: inline-block; /* Permite dimensiuni flexibile pentru casetă */
+    padding: 5%; /* Spațiu în interior */
+    border-radius: 12px; /* Colțuri rotunjite */
+    font-weight: bold; /* Text evidențiat */
+    font-size: 0.9em; /* Dimensiune rezonabilă a textului */
+    color: white; /* Text alb */
+    text-align: center; /* Text centrat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Umbră */
+    max-width: 200px; /* Lățime maximă */
+    margin: 2% auto 2% 22%; /* Centrează caseta în celulă */
+    background-color: #ff9800;
+}
+
+/* Reluată */
+.status-reluata {
+    display: inline-block; /* Permite dimensiuni flexibile pentru casetă */
+    padding: 5%; /* Spațiu în interior */
+    border-radius: 12px; /* Colțuri rotunjite */
+    font-weight: bold; /* Text evidențiat */
+    font-size: 0.9em; /* Dimensiune rezonabilă a textului */
+    color: white; /* Text alb */
+    text-align: center; /* Text centrat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Umbră */
+    margin: 2% auto 2% 32%; /* Centrează caseta în celulă */
+    background-color: #03a9f4;
+}
+
+/* Repetată */
+.status-repetata {
+    display: inline-block; /* Permite dimensiuni flexibile pentru casetă */
+    padding: 5%; /* Spațiu în interior */
+    border-radius: 12px; /* Colțuri rotunjite */
+    font-weight: bold; /* Text evidențiat */
+    font-size: 0.9em; /* Dimensiune rezonabilă a textului */
+    color: white; /* Text alb */
+    text-align: center; /* Text centrat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Umbră */
+    max-width: 200px; /* Lățime maximă */
+    margin: 2% auto 2% 32%; /* Centrează caseta în celulă */
+    background-color: #9c27b0; /* Purple for repetată */
+}
+
+/* Suspendată */
+.status-suspendata {
+    display: inline-block; /* Permite dimensiuni flexibile pentru casetă */
+    padding: 5%; /* Spațiu în interior */
+    border-radius: 12px; /* Colțuri rotunjite */
+    font-weight: bold; /* Text evidențiat */
+    font-size: 0.9em; /* Dimensiune rezonabilă a textului */
+    color: white; /* Text alb */
+    text-align: center; /* Text centrat */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Umbră */
+    max-width: 200px; /* Lățime maximă */
+    margin: 2% auto 2% 29%; /* Centrează caseta în celulă */
+    background-color: #f44336; /* Red for suspendată */
+}
+
+form {
+    display: inline; /* Asigură alinierea în linie pentru butonul din form */
+    margin: 0;
+    padding: 0;
+}
+

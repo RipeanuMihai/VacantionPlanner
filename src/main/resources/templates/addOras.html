@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Adaugă Oraș</title>
+  <link rel="stylesheet" href="/css/addAtractie_styles.css" />
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Adaugă Oraș</h1>
+
+  <form th:action="@{/web/tara/{taraId}/oras/add(taraId=${tara.id})}" th:object="${oras}" method="post">
+    <!-- Nume Oraș -->
+    <div class="form-group">
+      <label class="form-label" for="nume">Nume Oraș:</label>
+      <input class="form-input" type="text" id="nume" name="nume" th:field="*{nume}" placeholder="Introduceți numele orașului" />
+      <div th:if="${#fields.hasErrors('nume')}" class="error-message" th:errors="*{nume}"></div>
+    </div>
+
+    <!-- Descriere Oraș -->
+    <div class="form-group">
+      <label class="form-label" for="descriere">Descriere:</label>
+      <textarea class="form-textarea" id="descriere" name="descriere" th:field="*{descriere}" placeholder="Introduceți descrierea orașului"></textarea>
+      <div th:if="${#fields.hasErrors('descriere')}" class="error-message" th:errors="*{descriere}"></div>
+    </div>
+
+    <!-- Butoane -->
+    <div class="form-actions">
+      <button class="btn btn-submit" type="submit">Adaugă Oraș</button>
+      <a th:href="@{/web/tara/{id}/orase(id=${tara.id})}" class="btn btn-back">Înapoi la lista orașelor</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

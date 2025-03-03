@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista Atracții</title>
+  <link rel="stylesheet" href="/css/atractii_styles.css?v=6" />
+</head>
+<body>
+<div class="container">
+  <h2 class="title">Lista Atracțiilor: <span th:text="${oras.nume}"></span> </h2>
+
+  <table class="atractii-table">
+    <thead>
+    <tr class="table-header">
+      <th class="table-column">Nume</th>
+      <th class="table-column">Descriere</th>
+      <th class="table-column">Status</th>
+      <th class="table-column">Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="atractie : ${atractii}" class="table-row">
+      <td class="table-data nume" th:text="${atractie.nume}"></td>
+      <td class="table-data descriere" th:text="${atractie.descriere}"></td>
+      <td class="table-data" th:class="'status-' + ${atractie.status.name().toLowerCase()}" th:text="${atractie.status.name()}"></td>
+      <td class="table-actions">
+        <a th:href="@{/web/atractie/edit/{id}(id=${atractie.id})}" class="btn btn-edit">Editează</a>
+        <form th:action="@{/web/atractie/delete/{id}(id=${atractie.id})}" method="post" onsubmit="return confirm('Ești sigur că vrei să ștergi această atracție?');">
+          <input type="hidden" name="_method" value="delete"/>
+          <button type="submit" class="btn btn-delete">Șterge</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <a href="/oras/{orasId}/addAtractie" th:href="@{/web/oras/{orasId}/atractie/add(orasId=${oras.id})}" class="btn btn-add">Adaugă Atracție</a>
+    <a th:href="@{/web/tara/{taraId}/orase(taraId=${oras.tara.id})}" class="btn btn-back">Înapoi la Orașe</a>
+  </div>
+</div>
+</body>
+</html>
